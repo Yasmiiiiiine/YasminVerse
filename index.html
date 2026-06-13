@@ -3,50 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rabia Yasmine | Portfolio Académique</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>YasmineVerse — Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <nav class="navbar">
-        <div class="logo">RABIA YASMINE</div>
-        <ul class="nav-links">
-            <li><a href="#apropos">Parcours</a></li>
-            <li><a href="#portfolio">Projets</a></li>
-            <li><a href="mailto:ton.email@univ.dz" class="btn-contact">Contact</a></li>
-        </ul>
-    </nav>
 
-    <header class="hero">
-        <div class="hero-text">
-            <h1>Futur spécialiste en cybersécurité dédié à l'innovation.</h1>
-            <p>Étudiante en 3ème année d'informatique à l'Université de Bouira. J'allie rigueur mathématique et passion pour la protection des systèmes complexes.</p>
-            <div class="actions">
-                <a href="#portfolio" class="btn-primary">Voir mes travaux</a>
-                <a href="CV3.png" download class="btn-secondary">Télécharger CV</a>
+<header>
+    <div class="container header-inner">
+
+        <a href="#" class="logo">
+            ✨ YasmineVerse
+        </a>
+
+        <nav class="nav-links">
+            <a href="#apropos">À propos</a>
+            <a href="#portfolio">Projets</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<section class="hero">
+
+    <div class="container hero-grid">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                Étudiante en Informatique
             </div>
-        </div>
-        <img src="CV4.jpg" alt="Rabia Yasmine" class="hero-img">
-    </header>
 
-    <section id="portfolio" class="portfolio">
-        <h2 class="section-title">Projets Scientifiques</h2>
-        <div class="grid">
-            <article class="card">
-                <h3>🛡️ CyberShield AI</h3>
-                <p>Analyseur de risques IA pour sécuriser les réseaux.</p>
-                <a href="#" class="link">Accéder au projet →</a>
-            </article>
-            <article class="card">
-                <h3>🤖 UniShield ML</h3>
-                <p>Détection d'anomalies réseau haute performance.</p>
-                <a href="#" class="link">Accéder au projet →</a>
-            </article>
-        </div>
-    </section>
+            <h1 class="hero-title">
+                Bonjour, je suis
+                <span class="highlight">Rabia Yasmine</span>
+            </h1>
 
-    <footer>
-        <p>© 2026 — Rabia Yasmine. Université Akli Mohand Oulhadj.</p>
-    </footer>
+            <p class="hero-description">
+                Passionnée par la cybersécurité et l'intelligence artificielle,
+                j'aime transformer les idées en projets innovants.
+            </p>
+
+            <div class="hero-actions">
+
+                <a href="#portfolio" class="btn btn-primary">
+                    Voir mes projets
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-photo-container">
+
+            <img src="CV4.jpg"
+                 alt="Rabia Yasmine"
+                 class="hero-photo">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="apropos" class="apropos">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            À propos de moi
+        </h2>
+
+
+        <div class="apropos-grid">
+
+            <div class="apropos-card">
+
+                <h3>Présentation</h3>
+
+                <p>
+                    Étudiante en informatique, je suis motivée
+                    par l'apprentissage continu, les défis techniques
+                    et le développement de solutions utiles.
+                </p>
+
+            </div>
+
+
+            <div class="apropos-card">
+
+                <h3>Université</h3>
+
+                <p>
+                    Université Akli Mohand Oulhadj de Bouira.
+                    Je poursuis mon parcours académique avec
+                    ambition et détermination.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section id="portfolio" class="portfolio">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Mes projets
+        </h2>
+
+
+        <div class="projects-grid">
+
+            <article class="project-card featured">
+
+                <h3>
+                    🛡️ CyberShield AI
+                </h3>
+
+                <p>
+                    Analyseur intelligent de risques
+                    pour URLs et emails.
+                </p>
+
+                <a href="./CyberShield_AI/index.html"
+                   class="btn btn-secondary"
+                   target="_blank">
+
+                    Découvrir
+
+                </a>
+
+            </article>
+
+
+
+            <article class="project-card">
+
+                <h3>
+                    🤖 UniShield ML
+                </h3>
+
+                <p>
+                    Système intelligent de détection
+                    d'anomalies réseau.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<footer>
+
+    <div class="container">
+
+        <p>
+            © 2026 YasmineVerse — Rabia Yasmine
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
