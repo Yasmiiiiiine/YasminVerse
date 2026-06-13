@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="YasmineVerse — Portfolio de Rabia Yasmine, étudiante en informatique." />
+  <title>YasmineVerse — Beyond a CV, a digital experience</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo"><span class="logo-icon">🛡️</span> YasmineVerse</a>
+      <nav class="nav-links">
+        <a href="#apropos">À propos</a>
+        <a href="#competences">Compétences</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#bonus">Concept Bonus</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">Étudiante en 3ème Année Informatique</div>
+          <h1 class="hero-title">Découvrez <span class="highlight">YasmineVerse</span></h1>
+          <p class="hero-description">Passionnée par la programmation et la cybersécurité. Je conçois des solutions innovantes basées sur une rigueur mathématique solide.</p>
+          <div class="hero-actions">
+            <a href="#portfolio" class="btn btn-primary">Explorer mes projets</a>
+          </div>
+        </div>
+        <div class="hero-photo-container">
+          <img src="CV4.jpg" alt="Rabia Yasmine" class="hero-photo" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section id="apropos" class="apropos">
+      <div class="container">
+        <h2 class="section-title">À propos de moi</h2>
+        <div class="apropos-grid">
+          <div class="apropos-card">
+            <h3>Présentation</h3>
+            <p>Étudiante en 3ème année d'informatique, je combine logique mathématique et passion pour la cybersécurité pour créer des projets technologiques complexes[cite: 1].</p>
+          </div>
+          <div class="apropos-card">
+            <h3>Université</h3>
+            <p>Étudiante à l'Université Akli Mohand Oulhadj de Bouira, sous l'encadrement des professeurs Bennouar et Bal, où l'excellence est la norme[cite: 1].</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Portfolio -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+        <h2 class="section-title">Portfolio</h2>
+        <div class="projects-grid">
+          <article class="project-card featured">
+            <h3>🛡️ CyberShield AI</h3>
+            <p>Analyseur de risques pour URLs et emails, combinant IA et sécurité[cite: 1].</p>
+            <a href="./CyberShield_AI/index.html" class="btn btn-secondary" target="_blank">Accéder au projet</a>
+          </article>
+          <article class="project-card">
+            <h3>🤖 UniShield ML</h3>
+            <p>Détection d'anomalies réseau pour l'université de Bouira[cite: 1].</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal corrigé -->
+  <div id="city-modal" class="modal-overlay" aria-hidden="true" role="dialog">
+    <div class="modal">
+      <button type="button" class="modal-close">&times;</button>
+      <h4 id="modal-title"></h4>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 YasmineVerse — Développé par Rabia Yasmine</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
