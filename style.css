@@ -1,93 +1,58 @@
-/* ═══════════════════════════════════════════════════════════
-   YasmineVerse — Thème Minimaliste & Professionnel
-   ═══════════════════════════════════════════════════════════ */
-
-:root {
-    --bg-white: #ffffff;
-    --text-main: #1a1a1a;
-    --text-muted: #666666;
-    --accent-blue: #0066ff; /* Bleu Royal */
-    --accent-red: #ff4d4d;  /* Rouge Corail */
-    --spacing-lg: 80px;
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: var(--bg-white);
-    color: var(--text-main);
-    line-height: 1.6;
-    overflow-x: hidden;
+.project-card h3 {
+    color: var(--accent);
+    margin-bottom: 20px;
 }
 
-/* 1. Header Épuré */
-header.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 10%;
+.project-card p {
+    color: var(--text-muted);
+    margin-bottom: 30px;
 }
 
-.logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
-
-.nav-links { display: flex; list-style: none; gap: 30px; }
-.nav-links a { text-decoration: none; color: var(--text-main); font-weight: 500; transition: 0.3s; }
-.nav-links a:hover { color: var(--accent-blue); }
-
-.btn-cta { 
-    background: var(--text-main); color: white; padding: 12px 25px; 
-    border-radius: 50px; text-decoration: none; font-weight: 600; 
+.featured {
+    background: linear-gradient(
+        135deg,
+        white,
+        #fff0f5
+    );
 }
 
-/* 2. Hero Section */
-.hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--spacing-lg) 10%;
-    min-height: 80vh;
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 40px 0;
+    background: var(--bg-elevated);
 }
 
-.hero-content h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
-.hero-content span { color: var(--accent-blue); }
-
-.profile-pic { width: 400px; height: 400px; object-fit: cover; border-radius: 30px; }
-
-/* 3. Portfolio & Cartes */
-.portfolio { padding: var(--spacing-lg) 10%; }
-
-.project-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 40px; 
-    margin-top: 50px;
+footer p {
+    color: var(--text-muted);
 }
 
-.card {
-    padding: 40px;
-    border: 1px solid #f0f0f0;
-    border-radius: 20px;
-    transition: 0.4s;
-    background: #fafafa;
-}
+/* RESPONSIVE */
 
-.card:hover {
-    border-color: var(--accent-blue);
-    transform: translateY(-10px);
-}
-
-.btn-link {
-    display: inline-block;
-    margin-top: 20px;
-    color: var(--accent-red);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
-    .hero { flex-direction: column; text-align: center; }
-    .profile-pic { width: 250px; height: 250px; }
-    .hero-content h1 { font-size: 2.5rem; }
+
+    .hero-grid,
+    .apropos-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-title {
+        font-size: 2.6rem;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .hero-photo {
+        width: 260px;
+        height: 260px;
+    }
 }
