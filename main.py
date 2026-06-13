@@ -1,9 +1,17 @@
+# main.py
 import os
+import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from typing import Optional
 
-# Importation directe (Render est sur Linux et s'exécute à la racine)
+# 🛠️ On injecte dynamiquement le dossier de CyberShield-AI dans les chemins Python.
+# Cela permet à Render de trouver 'analyzer' peu importe d'où la commande est lancée !
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.append(current_dir)
+
 from analyzer import analyze_password, analyze_url, analyze_email_text
 
 app = FastAPI(title="CyberShield AI API")
@@ -24,7 +32,9 @@ class UrlInput(BaseModel):
     url: str
 
 class EmailInput(BaseModel):
-    email_content: str
+    # Accepte email_content ou email pour éviter le crash 422 de validation
+    email_content: Optional[str] = None
+    email: Optional[str] = None
 
 @app.post("/analyze/password")
 def api_analyze_password(data: PasswordInput):
@@ -36,7 +46,9 @@ def api_analyze_url(data: UrlInput):
 
 @app.post("/analyze/email")
 def api_analyze_email(data: EmailInput):
-    return analyze_email_text(data.email_content)
+    # Récupère la chaîne de texte peu importe la clé envoyée par le front-end
+    text_to_analyze = data.email_content or data.email or ""
+    return analyze_email_text(text_to_analyze)
 
 if __name__ == "__main__":
     import uvicorn
