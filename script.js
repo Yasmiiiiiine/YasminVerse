@@ -170,7 +170,7 @@
       msgDisplay.innerText = "L'ordinateur réfléchit...";
 
       // Communication avec l'API Tic-Tac-Toe locale (Port 8002)
-      fetch('https://yasmineverse-tictactoe.onrender.com/play', {
+     fetch('https://yasmineverse-tictactoe.onrender.com/play', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ board: currentBoard })
