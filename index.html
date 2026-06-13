@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberShield AI — Analyse de sécurité</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Segoe UI', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Consolas', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    .cyber-grid {
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .tab-btn.active {
+      background-color: #fff;
+      color: #2563eb;
+      border-color: #e2e8f0;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .signature {
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.65rem;
+      font-weight: 500;
+    }
+    .signature span {
+      background: linear-gradient(90deg, #2563eb, #0891b2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    @keyframes pulse-ring {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    .score-ring { animation: pulse-ring 2s ease-in-out infinite; }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 font-sans cyber-grid flex flex-col">
+
+  <!-- Header -->
+  <header class="border-b border-slate-200 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center">
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <span class="text-sm font-semibold text-slate-700 hidden sm:inline">CyberShield</span>
+      </div>
+      <p class="signature text-slate-400">
+        Développé par <span>Rabia Yasmine</span>
+      </p>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-14">
+
+    <!-- Hero -->
+    <section class="text-center mb-10 sm:mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-xs font-medium mb-5">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 score-ring"></span>
+        Analyse de sécurité en temps réel
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-3">
+        CyberShield <span class="text-blue-600">AI</span>
+      </h1>
+      <p class="text-slate-500 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+        Protégez-vous contre les menaces numériques — analysez vos mots de passe,
+        URLs et e-mails en un clic.
+      </p>
+    </section>
+
+    <!-- Tabs Card -->
+    <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+
+      <!-- Tab Navigation -->
+      <nav class="flex border-b border-slate-200 bg-slate-50/60 p-1.5 gap-1" role="tablist">
+        <button type="button" role="tab" aria-selected="true"
+          class="tab-btn active flex-1 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-500 border border-transparent transition-all duration-200 hover:text-blue-600"
+          data-tab="password">
+          🔐 Mot de passe
+        </button>
+        <button type="button" role="tab" aria-selected="false"
+          class="tab-btn flex-1 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-500 border border-transparent transition-all duration-200 hover:text-blue-600"
+          data-tab="url">
+          🌐 URL
+        </button>
+        <button type="button" role="tab" aria-selected="false"
+          class="tab-btn flex-1 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-500 border border-transparent transition-all duration-200 hover:text-blue-600"
+          data-tab="email">
+          📧 Email
+        </button>
+      </nav>
+
+      <!-- Tab Panels -->
+      <div class="p-6 sm:p-8">
+
+        <!-- Password -->
+        <div id="panel-password" class="tab-panel active" role="tabpanel">
+          <form id="form-password" class="space-y-5">
+            <div>
+              <label for="input-password" class="block text-sm font-medium text-slate-700 mb-2">
+                Mot de passe à analyser
+              </label>
+              <input type="password" id="input-password" name="password" autocomplete="off"
+                placeholder="Entrez votre mot de passe…"
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition font-mono text-sm" />
+            </div>
+            <button type="submit"
+              class="w-full sm:w-auto px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500/40">
+              Lancer l'analyse
+            </button>
+          </form>
+          <div id="result-password" class="result-panel hidden mt-8"></div>
+        </div>
+
+        <!-- URL -->
+        <div id="panel-url" class="tab-panel" role="tabpanel">
+          <form id="form-url" class="space-y-5">
+            <div>
+              <label for="input-url" class="block text-sm font-medium text-slate-700 mb-2">
+                URL à analyser
+              </label>
+              <input type="url" id="input-url" name="url"
+                placeholder="https://exemple.com/page"
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition font-mono text-sm" />
+            </div>
+            <button type="submit"
+              class="w-full sm:w-auto px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500/40">
+              Lancer l'analyse
+            </button>
+          </form>
+          <div id="result-url" class="result-panel hidden mt-8"></div>
+        </div>
+
+        <!-- Email -->
+        <div id="panel-email" class="tab-panel" role="tabpanel">
+          <form id="form-email" class="space-y-5">
+            <div>
+              <label for="input-email" class="block text-sm font-medium text-slate-700 mb-2">
+                Contenu de l'e-mail
+              </label>
+              <textarea id="input-email" name="email_content" rows="6"
+                placeholder="Collez ici le texte de l'e-mail suspect…"
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition text-sm resize-y"></textarea>
+            </div>
+            <button type="submit"
+              class="w-full sm:w-auto px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500/40">
+              Lancer l'analyse
+            </button>
+          </form>
+          <div id="result-email" class="result-panel hidden mt-8"></div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white mt-auto">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-slate-400">
+        © 2026 CyberShield AI — Outil éducatif d'analyse de sécurité
+      </p>
+      <p class="signature text-slate-400">
+        Développé par <span>Rabia Yasmine</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const API_BASE = 'https://cybershield-ai-zb94.onrender.com';
+
+    const RISK_STYLES = {
+      'Faible':   { badge: 'bg-emerald-50 text-emerald-700 border-emerald-200', bar: 'bg-emerald-500', ring: 'text-emerald-500' },
+      'Modéré':   { badge: 'bg-orange-50 text-orange-700 border-orange-200',   bar: 'bg-orange-500',  ring: 'text-orange-500' },
+      'Élevé':    { badge: 'bg-orange-100 text-orange-800 border-orange-300',  bar: 'bg-orange-600',  ring: 'text-orange-600' },
+      'Critique': { badge: 'bg-red-50 text-red-700 border-red-200',            bar: 'bg-red-500',     ring: 'text-red-500' },
+    };
+
+    /* ── Gestion des Onglets ── */
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.tab === target);
+          b.setAttribute('aria-selected', b.dataset.tab === target);
+        });
+        document.querySelectorAll('.tab-panel').forEach(panel => {
+          panel.classList.toggle('active', panel.id === `panel-${target}`);
+        });
+      });
+    });
+
+    /* ── Affichage des Résultats ── */
+    function renderResult(container, data) {
+      const level = data.risk_level || 'Faible';
+      const score = data.risk_score ?? 0;
+      const styles = RISK_STYLES[level] || RISK_STYLES['Faible'];
+
+      container.innerHTML = `
+        <div class="rounded-xl border border-slate-200 bg-slate-50/50 p-5 sm:p-6 space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <p class="text-xs font-medium text-slate-400 uppercase tracking-wider mb-1">Score de risque</p>
+              <div class="flex items-baseline gap-2">
+                <span class="text-4xl font-bold ${styles.ring}">${score}</span>
+                <span class="text-slate-400 text-sm">/ 100</span>
+              </div>
+            </div>
+            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold border ${styles.badge}">
+              ${level}
+            </span>
+          </div>
+          <div class="w-full h-2 rounded-full bg-slate-200 overflow-hidden">
+            <div class="h-full rounded-full transition-all duration-700 ${styles.bar}" style="width: ${score}%"></div>
+          </div>
+          <div class="pt-1 border-t border-slate-200">
+            <p class="text-xs font-medium text-slate-400 uppercase tracking-wider mb-2">Analyse</p>
+            <p class="text-sm text-slate-600 leading-relaxed">${data.explanation || 'Aucune explication disponible.'}</p>
+          </div>
+        </div>
+      `;
+      container.classList.remove('hidden');
+    }
+
+    function renderError(container, message) {
+      container.innerHTML = `
+        <div class="rounded-xl border border-red-200 bg-red-50 p-5 text-sm text-red-700">
+          <p class="font-semibold mb-1">Erreur</p>
+          <p>${message}</p>
+        </div>
+      `;
+      container.classList.remove('hidden');
+    }
+
+    function setLoading(form, loading) {
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.disabled = loading;
+        btn.textContent = loading ? 'Analyse en cours…' : "Lancer l'analyse";
+        btn.classList.toggle('opacity-60', loading);
+      }
+    }
+
+    async function handleSubmit(form, endpoint, bodyFactory, resultId) {
+      if (!form) return;
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const resultEl = document.getElementById(resultId);
+        setLoading(form, true);
+
+        try {
+          const response = await fetch(`${API_BASE}${endpoint}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bodyFactory()),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Erreur ${response.status}`);
+          }
+
+          const data = await response.json();
+          renderResult(resultEl, data);
+        } catch (err) {
+          renderError(resultEl, "Erreur de communication avec l'API. Vérifie le format ou le terminal.");
+        } finally {
+          setLoading(form, false);
+        }
+      });
+    }
+
+    // Association des formulaires avec la bonne structure attendue par main.py
+    handleSubmit(
+      document.getElementById('form-password'),
+      '/analyze/password',
+      () => ({ password: document.getElementById('input-password').value }),
+      'result-password'
+    );
+
+    handleSubmit(
+      document.getElementById('form-url'),
+      '/analyze/url',
+      () => ({ url: document.getElementById('input-url').value }),
+      'result-url'
+    );
+
+    // ICI : Envoi de email ET email_content pour éviter toute erreur 422 de validation FastAPI
+    handleSubmit(
+      document.getElementById('form-email'),
+      '/analyze/email',
+      () => {
+        const val = document.getElementById('input-email').value;
+        return { email: val, email_content: val };
+      },
+      'result-email'
+    );
+  </script>
+</body>
+</html>
