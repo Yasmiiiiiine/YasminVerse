@@ -1,16 +1,13 @@
 # main.py
 import os
 import sys
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 
-# Force Python à ajouter le dossier actuel au chemin de recherche de modules.
-# Cela garantit que 'import analyzer' fonctionne à coup sûr sur Render.
-dossier_actuel = os.path.dirname(os.path.abspath(__file__))
-if dossier_actuel not in sys.path:
-    sys.path.append(dossier_actuel)
+# Configuration du chemin
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from analyzer import analyze_password, analyze_url, analyze_email_text
 
@@ -20,7 +17,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Configuration CORS complète pour autoriser l'accès depuis n'importe où (Vercel)
+# Configuration CORS stricte mais ouverte pour le développement
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -29,36 +26,32 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Modèles de données d'entrée (Pydantic)
+# Modèles Pydantic avec validation
 class PasswordInput(BaseModel):
-    password: str
+    password: str = Field(..., min_length=1)
 
 class UrlInput(BaseModel):
-    url: str
+    url: str = Field(..., min_length=1)
 
 class EmailInput(BaseModel):
-    # En acceptant les deux clés, on règle définitivement l'erreur 422 (Unprocessable Entity)
     email_content: Optional[str] = None
     email: Optional[str] = None
 
 @app.get("/")
-def index():
+async def index():
     return {"status": "online", "project": "CyberShield-AI"}
 
 @app.post("/analyze/password")
-def api_analyze_password(data: PasswordInput):
+async def api_analyze_password(data: PasswordInput):
     return analyze_password(data.password)
 
 @app.post("/analyze/url")
-def api_analyze_url(data: UrlInput):
+async def api_analyze_url(data: UrlInput):
     return analyze_url(data.url)
 
 @app.post("/analyze/email")
-def api_analyze_email(data: EmailInput):
-    # Récupère le texte soumis qu'il vienne de 'email' ou de 'email_content'
-    texte_a_analyser = data.email_content or data.email or ""
-    return analyze_email_text(texte_a_analyser)
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+async def api_analyze_email(data: EmailInput):
+    texte = data.email_content or data.email
+    if not texte:
+        raise HTTPException(status_code=422, detail="Le contenu de l'email est requis.")
+    return analyze_email_text(texte)
