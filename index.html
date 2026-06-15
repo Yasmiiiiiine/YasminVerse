@@ -1,190 +1,292 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YasmineVerse — Portfolio</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YasmineVerse - Portfolio & Projets IA</title>
+  <meta name="description" content="YasmineVerse regroupe les projets IA, cybersécurité, machine learning, graphic design et TicTacToe de Rabia Yasmine.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
 </head>
-
 <body>
-
-<header>
+  <header class="site-header">
     <div class="container header-inner">
-
-        <a href="#" class="logo">
-            ✨ YasmineVerse
-        </a>
-
-        <nav class="nav-links">
-            <a href="#apropos">À propos</a>
-            <a href="#portfolio">Projets</a>
-        </nav>
-
+      <a href="#accueil" class="logo" aria-label="Accueil YasmineVerse">
+        <span class="logo-mark">Y</span>
+        <span>YasmineVerse</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="#moi">Moi</a>
+        <a href="#projets">Projets</a>
+        <a href="#design">Design</a>
+        <a href="#playground">Playground</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-</header>
+  </header>
 
-
-<section class="hero">
-
-    <div class="container hero-grid">
-
+  <main>
+    <section id="accueil" class="hero">
+      <div class="container hero-grid">
         <div class="hero-content">
-
-            <div class="hero-badge">
-                Étudiante en Informatique
-            </div>
-
-            <h1 class="hero-title">
-                Bonjour, je suis
-                <span class="highlight">Rabia Yasmine</span>
-            </h1>
-
-            <p class="hero-description">
-                Passionnée par la cybersécurité et l'intelligence artificielle,
-                j'aime transformer les idées en projets innovants.
-            </p>
-
-            <div class="hero-actions">
-
-                <a href="#portfolio" class="btn btn-primary">
-                    Voir mes projets
-                </a>
-
-            </div>
-
+          <p class="eyebrow">Portfolio intelligent de Rabia Yasmine</p>
+          <h1>Un seul univers pour mes projets IA, sécurité, design et web.</h1>
+          <p class="hero-description">
+            YasmineVerse réunit mes applications en ligne dans une porte d'entrée douce,
+            féminine et interactive : CyberShield AI, UniShield ML, EduPredict ML,
+            TicTacToe et mon studio Graphic Design.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projets">Explorer les projets</a>
+            <a class="btn btn-secondary" href="#design">Voir mes designs</a>
+          </div>
         </div>
 
-
-        <div class="hero-photo-container">
-
-            <img src="CV4.jpg"
-                 alt="Rabia Yasmine"
-                 class="hero-photo">
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section id="apropos" class="apropos">
-
-    <div class="container">
-
-        <h2 class="section-title">
-            À propos de moi
-        </h2>
-
-
-        <div class="apropos-grid">
-
-            <div class="apropos-card">
-
-                <h3>Présentation</h3>
-
-                <p>
-                    Étudiante en informatique, je suis motivée
-                    par l'apprentissage continu, les défis techniques
-                    et le développement de solutions utiles.
-                </p>
-
+        <div class="hero-panel" aria-label="Carte visuelle YasmineVerse">
+          <div class="orbit-card main-card">
+            <img src="/static/projects/CV4.jpg" alt="Rabia Yasmine" class="hero-photo">
+            <div>
+              <strong>Rabia Yasmine</strong>
+              <span>Informatique, IA, cybersécurité & design</span>
             </div>
-
-
-            <div class="apropos-card">
-
-                <h3>Université</h3>
-
-                <p>
-                    Université Akli Mohand Oulhadj de Bouira.
-                    Je poursuis mon parcours académique avec
-                    ambition et détermination.
-                </p>
-
-            </div>
-
+          </div>
+          <div class="floating-chip chip-one">FastAPI Gateway</div>
+          <div class="floating-chip chip-two">Machine Learning</div>
+          <div class="floating-chip chip-three">Graphic Design</div>
         </div>
+      </div>
+    </section>
 
-    </div>
+    <section id="moi" class="about section-band">
+      <div class="container split-section">
+        <div>
+          <p class="eyebrow">À propos de moi</p>
+          <h2>Je construis des projets utiles avec une touche créative.</h2>
+        </div>
+        <div class="about-copy">
+          <p>
+            Étudiante en informatique à l'Université Akli Mohand Oulhadj de Bouira,
+            je m'intéresse à l'intelligence artificielle, à la cybersécurité,
+            au développement web et à la création graphique.
+          </p>
+          <p>
+            Mon objectif avec YasmineVerse est de présenter mes projets comme un seul
+            parcours : chaque application garde son service Render, mais le visiteur
+            navigue depuis une interface unique, claire et élégante.
+          </p>
+        </div>
+      </div>
+    </section>
 
-</section>
-
-
-
-<section id="portfolio" class="portfolio">
-
-    <div class="container">
-
-        <h2 class="section-title">
-            Mes projets
-        </h2>
-
+    <section id="projets" class="projects-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Mes projets</p>
+          <h2>Cinq expériences reliées par YasmineVerse</h2>
+        </div>
 
         <div class="projects-grid">
+          <article class="project-card featured" data-project="cybershield">
+            <div class="project-topline">
+              <span class="project-icon">CS</span>
+              <span class="project-status">API Render</span>
+            </div>
+            <h3>CyberShield AI</h3>
+            <p>Analyse de mots de passe, URLs et emails suspects avec une interface dédiée à la sécurité.</p>
+            <div class="project-actions">
+              <a class="btn btn-primary" href="/go/cybershield" target="_blank" rel="noreferrer">Ouvrir</a>
+              <button class="text-btn" type="button" data-copy="/api/cybershield/">Copier la route</button>
+            </div>
+          </article>
 
-            <article class="project-card featured">
+          <article class="project-card" data-project="unishield">
+            <div class="project-topline">
+              <span class="project-icon">US</span>
+              <span class="project-status">IDS ML</span>
+            </div>
+            <h3>UniShield ML</h3>
+            <p>Détection d'intrusions réseau et classification des menaces à partir de flux simulés.</p>
+            <div class="project-actions">
+              <a class="btn btn-secondary" href="/go/unishield" target="_blank" rel="noreferrer">Ouvrir</a>
+              <button class="text-btn" type="button" id="btn-simulate-ids">Tester</button>
+            </div>
+          </article>
 
-                <h3>
-                    🛡️ CyberShield AI
-                </h3>
+          <article class="project-card" data-project="edupredict">
+            <div class="project-topline">
+              <span class="project-icon">EP</span>
+              <span class="project-status">IA explicable</span>
+            </div>
+            <h3>EduPredict ML</h3>
+            <p>Prédiction du risque universitaire avec une explication simple du résultat.</p>
+            <div class="project-actions">
+              <a class="btn btn-secondary" href="/go/edupredict" target="_blank" rel="noreferrer">Ouvrir</a>
+              <a class="text-btn" href="#playground">Mini démo</a>
+            </div>
+          </article>
 
-                <p>
-                    Analyseur intelligent de risques
-                    pour URLs et emails.
-                </p>
+          <article class="project-card game-card" data-project="tictactoe">
+            <div class="project-topline">
+              <span class="project-icon">XO</span>
+              <span class="project-status">Jeu inclus</span>
+            </div>
+            <h3>TicTacToe</h3>
+            <p>Jeu X/O connecté au moteur FastAPI du projet, intégré directement dans YasmineVerse.</p>
+            <div class="project-actions">
+              <a class="btn btn-secondary" href="/go/tictactoe" target="_blank" rel="noreferrer">API du jeu</a>
+              <a class="text-btn" href="#playground">Jouer ici</a>
+            </div>
+          </article>
 
-                <a href="./CyberShield_AI/index.html"
-                   class="btn btn-secondary"
-                   target="_blank">
-
-                    Découvrir
-
-                </a>
-
-            </article>
-
-
-
-            <article class="project-card">
-
-                <h3>
-                    🤖 UniShield ML
-                </h3>
-
-                <p>
-                    Système intelligent de détection
-                    d'anomalies réseau.
-                </p>
-
-            </article>
-
+          <article class="project-card design-card" data-project="graphic-design">
+            <div class="project-topline">
+              <span class="project-icon">GD</span>
+              <span class="project-status">Studio créatif</span>
+            </div>
+            <h3>Graphic Design</h3>
+            <p>Créations visuelles, supports PDF et travaux graphiques avec une direction douce et professionnelle.</p>
+            <div class="project-actions">
+              <a class="btn btn-secondary" href="#design">Voir la galerie</a>
+              <a class="text-btn" href="/static/projects/bakery.pdf" target="_blank" rel="noreferrer">PDF</a>
+            </div>
+          </article>
         </div>
 
+        <div class="connection-map" aria-label="Architecture de liaison des projets">
+          <div class="gateway-node">YasmineVerse<br><span>Service Render principal</span></div>
+          <div class="route-list">
+            <span>/go/cybershield</span>
+            <span>/go/unishield</span>
+            <span>/go/edupredict</span>
+            <span>/go/tictactoe</span>
+            <span>/static/projects</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="design" class="design-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Studio créatif</p>
+          <h2>Graphic Design</h2>
+          <p class="section-intro">
+            Une sélection de mes travaux visuels : affiches, supports de présentation,
+            identité graphique et documents créatifs.
+          </p>
+        </div>
+
+        <div class="design-layout">
+          <button class="design-preview" type="button" data-gallery-src="/static/projects/1.png" data-gallery-title="Design visuel 01">
+            <img src="/static/projects/1.png" alt="Design graphique 01">
+            <span>Voir en grand</span>
+          </button>
+
+          <button class="design-preview" type="button" data-gallery-src="/static/projects/2.png" data-gallery-title="Design visuel 02">
+            <img src="/static/projects/2.png" alt="Design graphique 02">
+            <span>Voir en grand</span>
+          </button>
+
+          <button class="design-preview" type="button" data-gallery-src="/static/projects/3.png" data-gallery-title="Design visuel 03">
+            <img src="/static/projects/3.png" alt="Design graphique 03">
+            <span>Voir en grand</span>
+          </button>
+        </div>
+
+        <div class="pdf-grid" aria-label="Documents PDF Graphic Design">
+          <a class="pdf-card" href="/static/projects/bakery.pdf" target="_blank" rel="noreferrer">
+            <strong>Bakery Design</strong>
+            <span>PDF créatif</span>
+          </a>
+          <a class="pdf-card" href="/static/projects/bakery2.pdf" target="_blank" rel="noreferrer">
+            <strong>Bakery Design 2</strong>
+            <span>PDF créatif</span>
+          </a>
+          <a class="pdf-card" href="/static/projects/laptop.pdf" target="_blank" rel="noreferrer">
+            <strong>Laptop Project</strong>
+            <span>PDF graphique</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="playground" class="playground section-band">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Playground</p>
+          <h2>Tester sans quitter YasmineVerse</h2>
+        </div>
+
+        <div class="playground-grid">
+          <article class="demo-panel">
+            <h3>EduPredict ML</h3>
+            <label for="edu-note">Note d'interrogation</label>
+            <input id="edu-note" type="number" min="0" max="20" step="0.5" value="9">
+            <label for="edu-abs">Absences TP/TD</label>
+            <input id="edu-abs" type="number" min="0" max="12" value="3">
+            <button class="btn btn-primary" type="button" id="btn-predict-edu">Prédire le risque</button>
+            <div class="result-box" id="edu-result-box">
+              <strong id="edu-risk">Résultat en attente</strong>
+              <p id="edu-xai">L'explication apparaîtra ici.</p>
+            </div>
+          </article>
+
+          <article class="demo-panel">
+            <h3>UniShield ML</h3>
+            <button class="btn btn-primary" type="button" id="btn-simulate-ids-panel">Simuler un flux réseau</button>
+            <div class="metric-row">
+              <span>Statut</span>
+              <strong id="ids-status-badge">En attente</strong>
+            </div>
+            <div class="metric-row">
+              <span>Menace</span>
+              <strong id="ids-threat">-</strong>
+            </div>
+            <div class="metric-row">
+              <span>Confiance</span>
+              <strong id="ids-conf">-</strong>
+            </div>
+            <p class="console-line" id="ids-log">Cliquez pour lancer une simulation.</p>
+          </article>
+
+          <article class="demo-panel tictactoe-panel">
+            <h3>TicTacToe</h3>
+            <p id="game-message" class="game-message">À votre tour !</p>
+            <div class="board" aria-label="Plateau TicTacToe">
+              <button class="cell" type="button" data-index="0"></button>
+              <button class="cell" type="button" data-index="1"></button>
+              <button class="cell" type="button" data-index="2"></button>
+              <button class="cell" type="button" data-index="3"></button>
+              <button class="cell" type="button" data-index="4"></button>
+              <button class="cell" type="button" data-index="5"></button>
+              <button class="cell" type="button" data-index="6"></button>
+              <button class="cell" type="button" data-index="7"></button>
+              <button class="cell" type="button" data-index="8"></button>
+            </div>
+            <button class="btn btn-secondary" type="button" id="btn-reset-game">Recommencer</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 YasmineVerse - Rabia Yasmine</p>
+      <a href="#accueil">Retour en haut</a>
     </div>
+  </footer>
 
-</section>
-
-
-
-<footer>
-
-    <div class="container">
-
-        <p>
-            © 2026 YasmineVerse — Rabia Yasmine
-        </p>
-
+  <div class="gallery-modal" id="gallery-modal" aria-hidden="true">
+    <div class="gallery-dialog" role="dialog" aria-modal="true" aria-labelledby="gallery-title">
+      <button class="gallery-close" type="button" aria-label="Fermer l'aperçu">×</button>
+      <h3 id="gallery-title">Aperçu</h3>
+      <img id="gallery-image" src="" alt="">
     </div>
+  </div>
 
-</footer>
-
-
-<script src="script.js"></script>
-
+  <script src="/static/script.js"></script>
 </body>
 </html>
