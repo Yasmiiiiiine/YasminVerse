@@ -8,7 +8,805 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="static/style.css">
+  <style>
+:root {
+  --bg: #fff8fb;
+  --paper: #ffffff;
+  --rose: #d96c99;
+  --rose-dark: #a94773;
+  --peach: #f6b59f;
+  --mint: #77c8b2;
+  --ink: #372c35;
+  --muted: #7d6c78;
+  --line: rgba(169, 71, 115, 0.16);
+  --shadow: 0 20px 50px rgba(169, 71, 115, 0.14);
+  --soft-shadow: 0 12px 30px rgba(169, 71, 115, 0.09);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(120deg, rgba(255, 248, 251, 0.96), rgba(255, 244, 238, 0.86)),
+    radial-gradient(circle at 12% 20%, rgba(119, 200, 178, 0.2), transparent 30%),
+    radial-gradient(circle at 90% 10%, rgba(217, 108, 153, 0.24), transparent 28%);
+  color: var(--ink);
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(169, 71, 115, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(169, 71, 115, 0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.container {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px);
+}
+
+.header-inner,
+.footer-inner {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--rose-dark);
+  font-family: "Playfair Display", serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.logo-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--rose), var(--peach));
+  color: white;
+  box-shadow: var(--soft-shadow);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  color: var(--muted);
+  font-size: 0.94rem;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--rose-dark);
+}
+
+.hero {
+  padding: 98px 0 78px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.eyebrow {
+  margin-bottom: 14px;
+  color: var(--rose-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.08;
+}
+
+h1,
+h2 {
+  font-family: "Playfair Display", serif;
+}
+
+h1 {
+  max-width: 760px;
+  font-size: clamp(2.8rem, 7vw, 5.8rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.35rem);
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+.hero-description,
+.about-copy,
+.project-card p,
+.result-box p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.hero-description {
+  max-width: 640px;
+  margin: 22px 0 30px;
+  font-size: 1.08rem;
+}
+
+.hero-actions,
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn,
+.text-btn {
+  border: 0;
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.btn {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  padding: 12px 18px;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--rose), var(--peach));
+  color: white;
+  box-shadow: 0 14px 28px rgba(217, 108, 153, 0.24);
+}
+
+.btn-secondary {
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--rose-dark);
+}
+
+.btn:hover,
+.text-btn:hover {
+  transform: translateY(-2px);
+}
+
+.text-btn {
+  background: transparent;
+  color: var(--rose-dark);
+  font-weight: 700;
+}
+
+.hero-panel {
+  position: relative;
+  min-height: 470px;
+  display: grid;
+  place-items: center;
+}
+
+.hero-panel::before {
+  content: "";
+  position: absolute;
+  width: min(80vw, 390px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(169, 71, 115, 0.18);
+  border-radius: 38% 62% 55% 45%;
+  animation: breathe 7s ease-in-out infinite;
+}
+
+.orbit-card {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 340px);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 28px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.hero-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 22px;
+  display: block;
+}
+
+.main-card div {
+  padding: 16px 4px 2px;
+  display: grid;
+  gap: 4px;
+}
+
+.main-card span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.floating-chip {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: var(--soft-shadow);
+  color: var(--rose-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.chip-one {
+  top: 36px;
+  right: 18px;
+}
+
+.chip-two {
+  left: 6px;
+  bottom: 92px;
+}
+
+.chip-three {
+  right: 0;
+  bottom: 44px;
+  color: #2f806d;
+}
+
+.section-band {
+  border-block: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.52);
+}
+
+.about,
+.projects-section,
+.design-section,
+.playground {
+  padding: 82px 0;
+}
+
+.split-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 54px;
+  align-items: start;
+}
+
+.about-copy {
+  display: grid;
+  gap: 18px;
+  font-size: 1rem;
+}
+
+.section-heading {
+  max-width: 720px;
+  margin-bottom: 34px;
+}
+
+.section-intro {
+  margin-top: 14px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.project-card,
+.demo-panel {
+  border: 1px solid rgba(169, 71, 115, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--soft-shadow);
+}
+
+.project-card {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 22px;
+}
+
+.project-card.featured {
+  background: linear-gradient(145deg, rgba(217, 108, 153, 0.14), rgba(255, 255, 255, 0.92));
+}
+
+.design-card {
+  background:
+    linear-gradient(145deg, rgba(119, 200, 178, 0.16), rgba(255, 255, 255, 0.92));
+}
+
+.project-card p {
+  flex: 1;
+}
+
+.project-topline,
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.project-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #fff0f6;
+  color: var(--rose-dark);
+  font-weight: 800;
+}
+
+.project-status {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.connection-map {
+  margin-top: 24px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px dashed rgba(169, 71, 115, 0.35);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.gateway-node {
+  color: var(--rose-dark);
+  font-weight: 800;
+}
+
+.gateway-node span {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.route-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.route-list span {
+  border-radius: 999px;
+  padding: 8px 10px;
+  background: #fff;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.design-section {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 246, 250, 0.68));
+}
+
+.design-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr 0.9fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.design-preview {
+  position: relative;
+  min-height: 280px;
+  border: 1px solid rgba(169, 71, 115, 0.14);
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  box-shadow: var(--soft-shadow);
+  cursor: pointer;
+}
+
+.design-preview:first-child {
+  min-height: 420px;
+}
+
+.design-preview img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.design-preview span {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  border-radius: 999px;
+  padding: 9px 12px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--rose-dark);
+  font-size: 0.82rem;
+  font-weight: 800;
+  box-shadow: var(--soft-shadow);
+}
+
+.design-preview:hover img {
+  transform: scale(1.04);
+}
+
+.pdf-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.pdf-card {
+  display: grid;
+  gap: 5px;
+  border: 1px solid rgba(169, 71, 115, 0.14);
+  border-radius: 8px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--soft-shadow);
+}
+
+.pdf-card strong {
+  color: var(--ink);
+}
+
+.pdf-card span {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(55, 44, 53, 0.58);
+  backdrop-filter: blur(10px);
+}
+
+.gallery-modal.is-open {
+  display: flex;
+}
+
+.gallery-dialog {
+  position: relative;
+  width: min(940px, 100%);
+  max-height: 88vh;
+  display: grid;
+  gap: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 8px;
+  padding: 18px;
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.gallery-dialog h3 {
+  padding-right: 44px;
+}
+
+.gallery-dialog img {
+  width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff8fb;
+}
+
+.gallery-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--rose-dark);
+  cursor: pointer;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.playground-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.demo-panel {
+  padding: 22px;
+  display: grid;
+  gap: 14px;
+}
+
+.demo-panel label {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.demo-panel input,
+.demo-panel textarea,
+.demo-select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: white;
+  color: var(--ink);
+  outline: none;
+}
+
+.demo-panel textarea {
+  min-height: 112px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.demo-panel input:focus,
+.demo-panel textarea:focus,
+.demo-select:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 0 4px rgba(217, 108, 153, 0.12);
+}
+
+.result-box,
+.console-line {
+  border-radius: 8px;
+  background: #fff6fa;
+  padding: 14px;
+}
+
+.result-box {
+  display: none;
+}
+
+.metric-row {
+  border-bottom: 1px solid rgba(169, 71, 115, 0.12);
+  padding-bottom: 10px;
+  color: var(--muted);
+}
+
+.metric-row strong {
+  color: var(--ink);
+  text-align: right;
+}
+
+.console-line {
+  color: #6f5f6a;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.board {
+  width: min(100%, 300px);
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  justify-self: center;
+}
+
+.cell {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  color: var(--rose-dark);
+  cursor: pointer;
+  font-size: clamp(1.8rem, 7vw, 3rem);
+  font-weight: 800;
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.cell:hover {
+  transform: translateY(-2px);
+  background: #fff0f6;
+}
+
+.player-x {
+  color: var(--rose-dark);
+}
+
+.computer-o {
+  color: #2f806d;
+}
+
+.winner-cell {
+  background: rgba(119, 200, 178, 0.24);
+  border-color: rgba(47, 128, 109, 0.42);
+}
+
+.game-message {
+  color: var(--muted);
+  font-weight: 700;
+  text-align: center;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--muted);
+}
+
+.site-footer a {
+  color: var(--rose-dark);
+  font-weight: 700;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(8deg) scale(1.04);
+  }
+}
+
+@media (max-width: 980px) {
+  .hero-grid,
+  .split-section,
+  .playground-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-grid,
+  .split-section {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .design-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .design-preview:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .hero-panel {
+    min-height: 430px;
+  }
+}
+
+@media (max-width: 680px) {
+  .header-inner {
+    min-height: auto;
+    padding: 14px 0;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .nav-links {
+    width: 100%;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .hero {
+    padding-top: 60px;
+  }
+
+  .projects-grid,
+  .playground-grid,
+  .design-layout,
+  .pdf-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .design-preview,
+  .design-preview:first-child {
+    min-height: 260px;
+  }
+
+  .connection-map {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .route-list {
+    justify-content: flex-start;
+  }
+
+  .floating-chip {
+    position: static;
+    margin: 8px auto 0;
+  }
+
+  .hero-panel {
+    min-height: auto;
+    display: block;
+  }
+
+  .hero-panel::before {
+    display: none;
+  }
+
+  .orbit-card {
+    margin: 0 auto 12px;
+  }
+}
+
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -46,7 +844,7 @@
 
         <div class="hero-panel" aria-label="Carte visuelle YasmineVerse">
           <div class="orbit-card main-card">
-            <img src="static/projects/CV4.jpg" alt="Rabia Yasmine" class="hero-photo">
+            <img src="/CV3.png" alt="Rabia Yasmine" class="hero-photo">
             <div>
               <strong>Rabia Yasmine</strong>
               <span>Informatique, IA, cybersécurité & design</span>
@@ -96,7 +894,7 @@
             <h3>CyberShield AI</h3>
             <p>Analyse de mots de passe, URLs et emails suspects avec une interface dédiée à la sécurité.</p>
             <div class="project-actions">
-              <a class="btn btn-primary" href="/go/cybershield" target="_blank" rel="noreferrer">Ouvrir</a>
+              <a class="btn btn-primary" href="#playground">Tester</a>
               <button class="text-btn" type="button" data-copy="/api/cybershield/">Copier la route</button>
             </div>
           </article>
@@ -109,7 +907,7 @@
             <h3>UniShield ML</h3>
             <p>Détection d'intrusions réseau et classification des menaces à partir de flux simulés.</p>
             <div class="project-actions">
-              <a class="btn btn-secondary" href="/go/unishield" target="_blank" rel="noreferrer">Ouvrir</a>
+              <a class="btn btn-secondary" href="#playground">Ouvrir</a>
               <button class="text-btn" type="button" id="btn-simulate-ids">Tester</button>
             </div>
           </article>
@@ -122,7 +920,7 @@
             <h3>EduPredict ML</h3>
             <p>Prédiction du risque universitaire avec une explication simple du résultat.</p>
             <div class="project-actions">
-              <a class="btn btn-secondary" href="/go/edupredict" target="_blank" rel="noreferrer">Ouvrir</a>
+              <a class="btn btn-secondary" href="#playground">Ouvrir</a>
               <a class="text-btn" href="#playground">Mini démo</a>
             </div>
           </article>
@@ -135,7 +933,7 @@
             <h3>TicTacToe</h3>
             <p>Jeu X/O connecté au moteur FastAPI du projet, intégré directement dans YasmineVerse.</p>
             <div class="project-actions">
-              <a class="btn btn-secondary" href="/go/tictactoe" target="_blank" rel="noreferrer">API du jeu</a>
+              <a class="btn btn-secondary" href="#playground">Jouer</a>
               <a class="text-btn" href="#playground">Jouer ici</a>
             </div>
           </article>
@@ -149,7 +947,7 @@
             <p>Créations visuelles, supports PDF et travaux graphiques avec une direction douce et professionnelle.</p>
             <div class="project-actions">
               <a class="btn btn-secondary" href="#design">Voir la galerie</a>
-              <a class="text-btn" href="/static/projects/bakery.pdf" target="_blank" rel="noreferrer">PDF</a>
+              <a class="text-btn" href="/projects/bakery.pdf" target="_blank" rel="noreferrer">PDF</a>
             </div>
           </article>
         </div>
@@ -161,7 +959,7 @@
             <span>/go/unishield</span>
             <span>/go/edupredict</span>
             <span>/go/tictactoe</span>
-            <span>/static/projects</span>
+            <span>/projects</span>
           </div>
         </div>
       </div>
@@ -179,32 +977,32 @@
         </div>
 
         <div class="design-layout">
-          <button class="design-preview" type="button" data-gallery-src="/static/projects/1.png" data-gallery-title="Design visuel 01">
-            <img src="/static/projects/1.png" alt="Design graphique 01">
+          <button class="design-preview" type="button" data-gallery-src="/projects/1.png" data-gallery-title="Design visuel 01">
+            <img src="/projects/1.png" alt="Design graphique 01">
             <span>Voir en grand</span>
           </button>
 
-          <button class="design-preview" type="button" data-gallery-src="/static/projects/2.png" data-gallery-title="Design visuel 02">
-            <img src="/static/projects/2.png" alt="Design graphique 02">
+          <button class="design-preview" type="button" data-gallery-src="/projects/2.png" data-gallery-title="Design visuel 02">
+            <img src="/projects/2.png" alt="Design graphique 02">
             <span>Voir en grand</span>
           </button>
 
-          <button class="design-preview" type="button" data-gallery-src="/static/projects/3.png" data-gallery-title="Design visuel 03">
-            <img src="/static/projects/3.png" alt="Design graphique 03">
+          <button class="design-preview" type="button" data-gallery-src="/projects/3.png" data-gallery-title="Design visuel 03">
+            <img src="/projects/3.png" alt="Design graphique 03">
             <span>Voir en grand</span>
           </button>
         </div>
 
         <div class="pdf-grid" aria-label="Documents PDF Graphic Design">
-          <a class="pdf-card" href="/static/projects/bakery.pdf" target="_blank" rel="noreferrer">
+          <a class="pdf-card" href="/projects/bakery.pdf" target="_blank" rel="noreferrer">
             <strong>Bakery Design</strong>
             <span>PDF créatif</span>
           </a>
-          <a class="pdf-card" href="/static/projects/bakery2.pdf" target="_blank" rel="noreferrer">
+          <a class="pdf-card" href="/projects/bakery2.pdf" target="_blank" rel="noreferrer">
             <strong>Bakery Design 2</strong>
             <span>PDF créatif</span>
           </a>
-          <a class="pdf-card" href="/static/projects/laptop.pdf" target="_blank" rel="noreferrer">
+          <a class="pdf-card" href="/projects/laptop.pdf" target="_blank" rel="noreferrer">
             <strong>Laptop Project</strong>
             <span>PDF graphique</span>
           </a>
@@ -220,6 +1018,23 @@
         </div>
 
         <div class="playground-grid">
+          <article class="demo-panel cyber-panel">
+            <h3>CyberShield AI</h3>
+            <label for="cyber-mode">Type d'analyse</label>
+            <select id="cyber-mode" class="demo-select">
+              <option value="password">Mot de passe</option>
+              <option value="url">URL</option>
+              <option value="email">Email</option>
+            </select>
+            <label for="cyber-input">Contenu à analyser</label>
+            <textarea id="cyber-input" rows="4" placeholder="Exemple : https://secure-bank-login.example.com"></textarea>
+            <button class="btn btn-primary" type="button" id="btn-analyze-cyber">Analyser</button>
+            <div class="result-box" id="cyber-result-box">
+              <strong id="cyber-risk">Résultat en attente</strong>
+              <p id="cyber-explanation">L'analyse apparaîtra ici.</p>
+            </div>
+          </article>
+
           <article class="demo-panel">
             <h3>EduPredict ML</h3>
             <label for="edu-note">Note d'interrogation</label>
@@ -287,6 +1102,292 @@
     </div>
   </div>
 
-  <script src="/static/script.js"></script>
+  <script>
+(function () {
+  "use strict";
+
+  const endpoints = {
+    cybershield: {
+      password: "/apps/cybershield/analyze/password",
+      url: "/apps/cybershield/analyze/url",
+      email: "/apps/cybershield/analyze/email"
+    },
+    edupredict: "/apps/edupredict/predict",
+    unishield: "/apps/unishield/analyze",
+    tictactoe: "/apps/tictactoe/play"
+  };
+
+  function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const target = document.querySelector(link.getAttribute("href"));
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }
+
+  function initCopyButtons() {
+    document.querySelectorAll("[data-copy]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const value = `${window.location.origin}${button.dataset.copy}`;
+        try {
+          await navigator.clipboard.writeText(value);
+          const original = button.textContent;
+          button.textContent = "Route copiée";
+          window.setTimeout(() => {
+            button.textContent = original;
+          }, 1400);
+        } catch {
+          button.textContent = "Copie indisponible";
+        }
+      });
+    });
+  }
+
+  async function postJson(url, payload) {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error(`Réponse ${response.status}`);
+    }
+
+    return response.json();
+  }
+
+  function initCyberShield() {
+    const button = document.getElementById("btn-analyze-cyber");
+    if (!button) return;
+
+    button.addEventListener("click", async () => {
+      const mode = document.getElementById("cyber-mode").value;
+      const input = document.getElementById("cyber-input").value.trim();
+      const resultBox = document.getElementById("cyber-result-box");
+      const risk = document.getElementById("cyber-risk");
+      const explanation = document.getElementById("cyber-explanation");
+
+      const payloads = {
+        password: { password: input },
+        url: { url: input },
+        email: { email_content: input }
+      };
+
+      resultBox.style.display = "block";
+      risk.textContent = "Analyse en cours...";
+      explanation.textContent = "YasmineVerse contacte CyberShield AI.";
+
+      try {
+        const data = await postJson(endpoints.cybershield[mode], payloads[mode]);
+        risk.textContent = `${data.risk_level} - score ${data.risk_score}/100`;
+        explanation.textContent = data.explanation;
+      } catch {
+        risk.textContent = "Analyse indisponible";
+        explanation.textContent = "Vérifiez le déploiement du service principal YasmineVerse.";
+      }
+    });
+  }
+
+  function initEduPredict() {
+    const button = document.getElementById("btn-predict-edu");
+    if (!button) return;
+
+    button.addEventListener("click", async () => {
+      const resultBox = document.getElementById("edu-result-box");
+      const risk = document.getElementById("edu-risk");
+      const explanation = document.getElementById("edu-xai");
+      const note = Number.parseFloat(document.getElementById("edu-note").value);
+      const absences = Number.parseInt(document.getElementById("edu-abs").value, 10);
+
+      resultBox.style.display = "block";
+      risk.textContent = "Analyse en cours...";
+      explanation.textContent = "YasmineVerse contacte EduPredict ML.";
+
+      try {
+        const data = await postJson(endpoints.edupredict, {
+          note_interro: note,
+          absences_tp: absences,
+          heures_connexion: 42
+        });
+        risk.textContent = `${data.prediction.niveau_risque} (${data.prediction.pourcentage_risque})`;
+        explanation.textContent = data.prediction.explication_xai;
+      } catch {
+        risk.textContent = "Service indisponible";
+        explanation.textContent = "Vérifiez le déploiement du service principal YasmineVerse.";
+      }
+    });
+  }
+
+  function initUniShield() {
+    const buttons = [
+      document.getElementById("btn-simulate-ids"),
+      document.getElementById("btn-simulate-ids-panel")
+    ].filter(Boolean);
+    if (!buttons.length) return;
+
+    const scenarios = [
+      { duree: 1.2, paquets: 14, octets: 6200 },
+      { duree: 0.3, paquets: 1800, octets: 920000 },
+      { duree: 0.02, paquets: 310, octets: 42000 }
+    ];
+
+    async function simulate() {
+      const status = document.getElementById("ids-status-badge");
+      const threat = document.getElementById("ids-threat");
+      const confidence = document.getElementById("ids-conf");
+      const log = document.getElementById("ids-log");
+      const selected = scenarios[Math.floor(Math.random() * scenarios.length)];
+
+      status.textContent = "Analyse...";
+      threat.textContent = "-";
+      confidence.textContent = "-";
+      log.textContent = "YasmineVerse contacte UniShield ML.";
+
+      try {
+        const data = await postJson(endpoints.unishield, selected);
+        status.textContent = data.status;
+        threat.textContent = data.classification.type_menace;
+        confidence.textContent = data.classification.score_confiance;
+        log.textContent = data.classification.analyse_technique;
+      } catch {
+        status.textContent = "Indisponible";
+        log.textContent = "Vérifiez le déploiement du service principal YasmineVerse.";
+      }
+    }
+
+    buttons.forEach((button) => button.addEventListener("click", simulate));
+  }
+
+  function initTicTacToe() {
+    const cells = Array.from(document.querySelectorAll(".cell"));
+    const message = document.getElementById("game-message");
+    const reset = document.getElementById("btn-reset-game");
+    if (!cells.length || !message) return;
+
+    let board = Array(9).fill("");
+    let running = true;
+
+    function paintBoard() {
+      cells.forEach((cell, index) => {
+        cell.textContent = board[index];
+        cell.className = "cell";
+        if (board[index] === "X") cell.classList.add("player-x");
+        if (board[index] === "O") cell.classList.add("computer-o");
+      });
+    }
+
+    function markWinners(symbol) {
+      const combos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+      ];
+
+      combos.forEach((combo) => {
+        if (combo.every((index) => board[index] === symbol)) {
+          combo.forEach((index) => cells[index].classList.add("winner-cell"));
+        }
+      });
+    }
+
+    cells.forEach((cell) => {
+      cell.addEventListener("click", async () => {
+        const index = Number.parseInt(cell.dataset.index, 10);
+        if (!running || board[index]) return;
+
+        board[index] = "X";
+        paintBoard();
+        message.textContent = "L'ordinateur réfléchit...";
+
+        try {
+          const data = await postJson(endpoints.tictactoe, { board });
+          board = data.board;
+          paintBoard();
+          message.textContent = data.message;
+
+          if (data.status === "gagne_humain" || data.status === "gagne_ordinateur") {
+            running = false;
+            markWinners(data.status === "gagne_humain" ? "X" : "O");
+          }
+
+          if (data.status === "egalite") {
+            running = false;
+          }
+        } catch {
+          message.textContent = "Service TicTacToe indisponible dans YasmineVerse.";
+        }
+      });
+    });
+
+    reset?.addEventListener("click", () => {
+      board = Array(9).fill("");
+      running = true;
+      message.textContent = "À votre tour !";
+      paintBoard();
+    });
+  }
+
+  function initDesignGallery() {
+    const modal = document.getElementById("gallery-modal");
+    const image = document.getElementById("gallery-image");
+    const title = document.getElementById("gallery-title");
+    const close = modal?.querySelector(".gallery-close");
+    const previews = document.querySelectorAll("[data-gallery-src]");
+
+    if (!modal || !image || !title || !close || !previews.length) return;
+
+    function openGallery(button) {
+      image.src = button.dataset.gallerySrc;
+      image.alt = button.dataset.galleryTitle || "Aperçu Graphic Design";
+      title.textContent = button.dataset.galleryTitle || "Aperçu";
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeGallery() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      image.src = "";
+    }
+
+    previews.forEach((button) => {
+      button.addEventListener("click", () => openGallery(button));
+    });
+
+    close.addEventListener("click", closeGallery);
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeGallery();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("is-open")) {
+        closeGallery();
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initSmoothScroll();
+    initCopyButtons();
+    initCyberShield();
+    initEduPredict();
+    initUniShield();
+    initTicTacToe();
+    initDesignGallery();
+  });
+})();
+
+  </script>
 </body>
 </html>
