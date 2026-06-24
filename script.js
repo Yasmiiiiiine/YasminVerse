@@ -1,10 +1,13 @@
 (function () {
   "use strict";
 
+ // MODIFICATION ICI : Ajout de ton URL Railway principale devant chaque route
+  const BASE_URL = "yasminverse-production.up.railway.app";
+
   const endpoints = {
-    edupredict: "/api/edupredict/predict",
-    unishield: "/api/unishield/analyze",
-    tictactoe: "/api/tictactoe/play"
+    edupredict: `${BASE_URL}/api/edupredict/predict`,
+    unishield: `${BASE_URL}/api/unishield/analyze`,
+    tictactoe: `${BASE_URL}/api/tictactoe/play`
   };
 
   function initSmoothScroll() {
