@@ -1106,15 +1106,18 @@ h3 {
 (function () {
   "use strict";
 
- const endpoints = {
+ // MODIFICATION : Ajout de la variable BASE_URL pointant vers ta passerelle Railway
+  const BASE_URL = "https://yasminverse-production.up.railway.app";
+
+  const endpoints = {
     cybershield: {
-      password: "/apps/cybershield/analyze/password",
-      url: "/apps/cybershield/analyze/url",
-      email: "/apps/cybershield/analyze/email"
+      password: `${BASE_URL}/api/cybershield/analyze/password`,
+      url: `${BASE_URL}/api/cybershield/analyze/url`,
+      email: `${BASE_URL}/api/cybershield/analyze/email`
     },
-    edupredict: "/apps/edupredict/predict",
-    unishield: "/apps/unishield/analyze",
-    tictactoe: "/apps/tictactoe/play"
+    edupredict: `${BASE_URL}/api/edupredict/predict`,
+    unishield: `${BASE_URL}/api/unishield/analyze`,
+    tictactoe: `${BASE_URL}/api/tictactoe/play`
   };
 
   function initSmoothScroll() {
