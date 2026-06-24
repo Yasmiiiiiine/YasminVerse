@@ -9,10 +9,11 @@ from fastapi.staticfiles import StaticFiles
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+
 PROJECT_URLS = {
     "cybershield": os.getenv("CYBERSHIELD_URL", "https://cybershield-ai-zb94.onrender.com"),
     "unishield": os.getenv("UNISHIELD_URL", "https://yasmineverse-unishield.onrender.com"),
-    "edupredict": os.getenv("EDUPREDICT_URL", "https://yasmineverse-edupredict.onrender.com"),
+    "edupredict": os.getenv("EDUPREDICT_URL", "https://edupredict-ml-5sm1.onrender.com"), # MODIFIÉ ICI
     "tictactoe": os.getenv("TICTACTOE_URL", "https://yasmineverse-tictactoe.onrender.com"),
 }
 
